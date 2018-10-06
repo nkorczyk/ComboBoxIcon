@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	width="100%" height="100%"
+	layout="vertical" creationPolicy="all">
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			import valueObjects.ValueObject;
+			[Bindable]
+			private var stateArrayColl:ArrayCollection = new ArrayCollection();
+			
+			[Bindable]
+			[Embed(source="/assets/alert_info.png")]
+			public var Information:Class;
+			
+			public function onCreationComplete():void 
+			{
+				iconComboBox.dropdown.iconField = "item3";
+			}
+			
+			public function init():void 
+			{
+				stateArrayColl.addItem(new ValueObject("AZ", "Arizona", "Information"));
+				stateArrayColl.addItem(new ValueObject("CA", "California", "Information"));
+				stateArrayColl.addItem(new ValueObject("CA", "California", "Information"));
+				stateArrayColl.addItem(new ValueObject("CA", "California", "Information"));
+				stateArrayColl.addItem(new ValueObject("CA", "California", "Information"));
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:VBox width="100%" horizontalAlign="center" verticalAlign="middle">
+		<mx:ComboBox id="iconComboBox" 
+			dataProvider="{this.stateArrayColl}" 
+			initialize="init()"
+			labelField="item2" 
+			prompt="Select States.." 
+			creationComplete="onCreationComplete()"
+			open="onCreationComplete()"/>
+		
+		<mx:Button id="button2"
+			label="2 fill colors defined"
+			fillColors="[red, haloOrange]" />
+		
+		<mx:Button id="button4"
+			label="4 fill colors defined"
+			fillColors="[red, haloOrange, haloGreen, haloBlue]" />
+		
+		<mx:Button id="buttonSolid"
+			label="solid fill"
+			fillColors="[red, red]" />
+		
+		<mx:Button id="buttonSolidOpaque"
+			label="solid opaque fill"
+			fillAlphas="[1.0, 1.0]"
+			fillColors="[red, red]" />
+	</mx:VBox>        
+</mx:Application>
